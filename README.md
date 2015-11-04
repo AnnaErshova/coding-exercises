@@ -42,7 +42,7 @@ Coding commentary:
 * Commentary added to ease following the code.
 
 Process: 
-* Initialize an empty nested array of correct size. In this case it is 10 rows by 5 columns.
+* Initialize an empty nested array of correct size. Size will be calculated based on number of unique IDs and dates. (In this case it is 10 rows by 5 columns.)
 * Populate row headers and column headers with correctly sorted unique values from the csv file. (Both row and column headers are sorted in ascending order.)
 * Populate the rest of the array with appropriately matched content.
 
