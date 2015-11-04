@@ -70,7 +70,7 @@ end
 # initialize without any variables; default variables are the onces speficises in the task
 FooBarShopping.new.shop
 
-# initialize with non-default variables:
+# ALTERNATIVELY: initialize with non-default variables:
 #  * starting foobar price as integer
 #  * % px increase as a decimal 
 #  * total $ to be spent as integer

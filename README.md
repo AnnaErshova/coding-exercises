@@ -5,10 +5,12 @@ Solved to utilize Ruby's object oriented nature.
 
 Code can be run with `ruby task1.rb` from the `coding-exercises` directory in Terminal on Mac if ruby is installed || or via copy-pastying at https://repl.it/languages/Ruby
 
-Class has to be initialized with the following:
+Class is initialized with the following variables by default:
 * Original foobar price (here: $1) as integer or decimal
 * % px increase of foobars as a decimal (here: 20%, input as 0.2)
 * Starting amount to be spent (here: $200) as integer or decimal
+
+Alternatively, class can be initialized with other variables that would need to be specified in an appropriate format. 
 
 This code simulates conducting each transaction one at a time, and basing foobar n price on foobar n-1 at time of sale. There will be more money spent and less money received back in change in this scenario.
 
