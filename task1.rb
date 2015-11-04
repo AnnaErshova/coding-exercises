@@ -7,7 +7,7 @@
 # object-oriented solution:
 class FooBarShopping
 
-  def initialize(initial_foobar_px,percentage_px_increase,initial_amount_to_spend)
+  def initialize(initial_foobar_px=1,percentage_px_increase=0.2,initial_amount_to_spend=200)
     @initial_foobar_px = initial_foobar_px
     @percentage_px_increase = percentage_px_increase
     @initial_amount_to_spend = initial_amount_to_spend
@@ -67,12 +67,14 @@ class FooBarShopping
 
 end
 
-# initialize with:
- # * starting foobar price as integer
- # * % px increase as a decimal 
- # * total $ to be spent as integer
-a = FooBarShopping.new(1,0.2,200)
-a.shop
+# initialize without any variables; default variables are the onces speficises in the task
+FooBarShopping.new.shop
+
+# initialize with non-default variables:
+#  * starting foobar price as integer
+#  * % px increase as a decimal 
+#  * total $ to be spent as integer
+# FooBarShopping.new(1,0.2,200).shop
 
 # run this code with 'ruby task1.rb' if ruby is installed || or via https://repl.it/languages/Ruby
 
