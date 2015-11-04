@@ -67,14 +67,14 @@ class FooBarShopping
 
 end
 
-# initialize without any variables; default variables are the onces speficises in the task
+# initialize without any variables; default variables are the onces specifies in the task
 FooBarShopping.new.shop
 
 # ALTERNATIVELY: initialize with non-default variables:
 #  * starting foobar price as integer
 #  * % px increase as a decimal 
 #  * total $ to be spent as integer
-# FooBarShopping.new(1,0.2,200).shop
+# FooBarShopping.new(1,0.2,200).shop # insert any other variables here in correct format
 
 # run this code with 'ruby task1.rb' if ruby is installed || or via https://repl.it/languages/Ruby
 

@@ -12,12 +12,20 @@
 # require ruby csv library 
 require 'csv'
 
+# requiry fileutils to access and modify files 
+require 'FileUtils'
+
+# clear temp file's content if it exists, otherwise create a blank writable file
+def clear_testdata_reworked_file
+  File.exist?('testdata_reworked.csv') ? FileUtils.rm('testdata_reworked.csv') : File.new("testdata_reworked.csv", 'w')
+end
+
 ###################### INITIALIZE AN EMPTY ARRAY OF CORRECT SIZE
 
 # find number of rows necessary
 def find_number_of_rows
   row_array = []
-  CSV.foreach('testdata.csv', {headers: true}) {|row| row_array << row[1]}
+  CSV.foreach('testdata.csv', {headers: true}) {|row| row_array << row[1]} 
   row_array.uniq.size
 end
 
@@ -54,6 +62,7 @@ def populate_matrix_with_row_headers
   collect_row_headers
   replace_row_helpers
 end
+# current @output_array ==> [[0, nil, nil, nil, nil], [734638, nil, nil, nil, nil], [734639, nil, nil, nil, nil], [734640, nil, nil, nil, nil], [734641, nil, nil, nil, nil], [734642, nil, nil, nil, nil], [734643, nil, nil, nil, nil], [734644, nil, nil, nil, nil], [734645, nil, nil, nil, nil], [734646, nil, nil, nil, nil]]
 
 # helper method for populate_matrix_with_row_headers
 def replace_row_helpers
@@ -63,7 +72,6 @@ def replace_row_helpers
     x += 1
   end
 end
-# current @output_array ==> [[0, nil, nil, nil, nil], [734638, nil, nil, nil, nil], [734639, nil, nil, nil, nil], [734640, nil, nil, nil, nil], [734641, nil, nil, nil, nil], [734642, nil, nil, nil, nil], [734643, nil, nil, nil, nil], [734644, nil, nil, nil, nil], [734645, nil, nil, nil, nil], [734646, nil, nil, nil, nil]]
 
 ###################### POPULATE ARRAY WITH COLUMN HEADERS (IDs)
 
@@ -85,6 +93,7 @@ def populate_matrix_with_column_headers
   populate_matrix_with_row_headers
   collect_column_headers
   @outcome_array[0] = @outcome_array[0].clear.push(" ").push(@column_headers).flatten! 
+  @outcome_array
 end
 # at this point, our column and row headers have been populated and we need to hydrate the matrix with appropriate variables
 # current @output_array ==> [[0, 102231711, 103244134, 103285344, 103293593], [734638, nil, nil, nil, nil], [734639, nil, nil, nil, nil], [734640, nil, nil, nil, nil], [734641, nil, nil, nil, nil], [734642, nil, nil, nil, nil], [734643, nil, nil, nil, nil], [734644, nil, nil, nil, nil], [734645, nil, nil, nil, nil], [734646, nil, nil, nil, nil]]
@@ -95,6 +104,7 @@ end
 def make_testdata_reworked_csv_file
   create_column_headers_index_hash 
   create_row_headers_index_hash 
+  clear_testdata_reworked_file
   CSV.open('testdata_reworked.csv', "wb") do |csv|
     CSV.foreach('testdata.csv', {headers: true}) do |row| 
       row[0] = @column_hash.key(row[0].to_i)
@@ -107,14 +117,15 @@ end
 # hydrates array with appropriately matched values
 def hydrate_array
   populate_matrix_with_column_headers
-  CSV.foreach('testdata_reworked.csv') { |row| @outcome_array[row[1].to_i][row[0].to_i+1] = row[2].to_f }
+  make_testdata_reworked_csv_file
+  CSV.foreach('testdata_reworked.csv') { |row| @outcome_array[row[1].to_i][row[0].to_i+1] = row[2].to_f } rescue "No csv file present."
   @outcome_array
 end
 
 # replaces NilClass with "nan" string; outputs array to Terminal
 def replace_nil_with_nan
   hydrate_array
-  @outcome_array.each { |row| row[row.index(nil)] = "nan" if row.include?(nil) }
+  @outcome_array.each { |row| row[row.index(nil)] = "nan" if row.include?(nil) } rescue "No array present."
   print "#{@outcome_array} \n"
 end
 
@@ -122,21 +133,15 @@ end
 def solve_and_write_to_csv
   replace_nil_with_nan
   CSV.open('solution_array.csv', "wb", {converters: :numeric}) do |csv|
-    @outcome_array.each { |array_row| csv << array_row }
+    @outcome_array.each { |array_row| csv << array_row } 
   end
 end
 
-solve_and_write_to_csv
+# only proceeds with the code if testdata file is not blank
+def runner
+  solve_and_write_to_csv unless File.zero?('testdata.csv')
+end
 
-# # dates  ↓
-# # ______|102231711|103244134 |103285344  |103293593
-# # 734638|300234299|371.912648|291.8402341|308504322
-# # 734639|375297743|465.33212 |383.1187303|367987076
-# # 734640|347131139|_________ |346.7884983|367304087
-# # 734641|324073368|444.012499|329.5651221|366744696
-# # 734642|314528399|450.494763|331.4411184|371354477 
-# # 734643|292151202|422.621704|279.583651 |382348434
-# # 734644|229731991|357.184776|213.6075258|332998895
-# # 734645|220363995|332.40686 |234.7429863|305312443
-# # 734646|298911020|418.780372|264.043354 |380569199
+runner
+
 

@@ -28,7 +28,7 @@ You will get $13.31 in change.
 
 This alternative solution would mean that line 41 should read `@initial_foobar_px = (@initial_foobar_px * (1+@percentage_px_increase))` instead of `@initial_foobar_px = (@initial_foobar_px * (1+@percentage_px_increase)).round(2)` as that is where rounding takes place.
 
-As part of my normal workflow, I would supplement this code with the following:
+As part of my normal workflow, I would supplement this code with the following: 
 
 * Tests, including for code accuracy, speed, and for validating inputs when initializing the object.
   * I'd like to see appropriate error messages if one input value is missing, is unrealistic (such as negative starting amount) or is incorrectly formatted.
@@ -55,6 +55,7 @@ Directory contents:
 * I placed the original `testdata.csv` file in the same directory as the solution file. 
 * Two other files are created:
   * An intermediary `testdata_reworked.csv` that serves as a data reference for the solution. It allows for potential extra testing to see that this step is accomplished correctly before the solution is processed.
+    * I am leaving this file accessible instead of deleting it after the calc is run to demonstrate its purpose.
   * A final solution as a `solution_array.csv` file.
 
 As part of my normal workflow, I would supplement this code with the following:
@@ -74,3 +75,18 @@ As a side note, the task specified leaving the value for which no match is found
 
 ======
 ## Task 3
+
+"There is no more common error than to assume that because prolonged and accurate mathematical calculations have been made, the application of the result to some fact of nature is absolutely certain."
+
+The task at hand is a basic quantitative times series forecasting method that assumes that patterns in the past data will continue into the future.
+
+Should be accompanied by estimate of error.
+
+The data has strong seasonality. Seasonality can change over time, but in this case we will assume a less apparent trend.
+
+Let's de-seasonalize and identify the pattern.
+
+Of course, this forecast assumes no other factors have come into play, such as flat price, HH premiums, new infrastructure (and change in residential demand base), etc.
+
+
+
