@@ -43,31 +43,32 @@ Coding commentary:
 * Solved procedurally to provide contrast to Task 1.
 * Commentary added to ease following the code.
 
-Process: 
-* Initialize an empty nested array of correct size. Size will be calculated based on number of unique IDs and dates. (In this case it is 10 rows by 5 columns.)
+Flow: 
+* Code does not proceed if testdata file is blank. Clear temp testdata file or create a blank one.
+* Initialize an empty nested array of correct size. Size is calculated based on number of unique IDs and dates. (In this case it is 10 rows by 5 columns.)
 * Populate row headers and column headers with correctly sorted unique values from the csv file. (Both row and column headers are sorted in ascending order.)
-* Populate the rest of the array with appropriately matched content.
+* Populate the rest of the array with appropriately matched content. To look up coordinates, I created coordinate hashes with values and their respective coordinates for dates and IDs.
+* Result is output in terminal and in CSV file (`solution_array.csv`)
 
 Code re-factoring:
-* I aimed to find a good balance between usilizing Ruby's explicit nature and keeping all methods as coherent units.
+* I aimed to find a good balance between usilizing Ruby's explicit nature and keeping all methods as coherent units. 
+* General suggestion for Ruby code is to keep all methods under five line of contents. I kept several methods longer than that for coherency's sake.
 
 Directory contents:
-* I placed the original `testdata.csv` file in the same directory as the solution file. 
-* Two other files are created:
-  * An intermediary `testdata_reworked.csv` that serves as a data reference for the solution. It allows for potential extra testing to see that this step is accomplished correctly before the solution is processed.
-    * I am leaving this file accessible instead of deleting it after the calc is run to demonstrate its purpose.
+* I placed the original `testdata.csv` file in the same directory as the solution file. The code will check to see if it's empty. 
+  * If the file is empty, the code will alert about it on the terminal and clear out all other files in the directory.
+  * This is basic safety check to avoid throwing errors if the downloaded file is empty.
+* Two other files are created if testdata file is valid:
+  * An intermediary `testdata_reworked.csv` that serves as a data reference for the solution. It allows for potential extra testing to see that this step is accomplished correctly before the solution is processed. It gets cleared out or created anew each time.before code runs.
   * A final solution as a `solution_array.csv` file.
 
 As part of my normal workflow, I would supplement this code with the following:
 
 * Tests:
-  * Checking size of the generated matrix.
-  * Checking that input values don't appear to be out of place (e.g. alerting the user when neighboring elements have too much price discrepancy or that they are not zero when they are not meant to be).
+  * Checking size of the generated matrix to make sure it is calculated correctly (as some expectations of that should be in place by the user before it comes in.)
+  * Checking that input values on the  `testdata.csv` file don't appear to be out of place (e.g. alerting the user when neighboring elements have too much price discrepancy or that they are not zero when they are not meant to be).
   * Checking that input values are formatted correctly (and not, say, in Datatime because an Excel mistake has been made).
   * For all the checking procedures, I would add a separate validation layer in the code that would alert the user that checks have been completed and that x many potential errors have been found.
-
-* Directory and file management:
-  * Making sure to clear `csv` files before running the code.
 
 * Ability to choose two different pricing scenarios and see their corresponding outputs.
 

@@ -9,6 +9,8 @@
  
 # Hint: In Matlab, this problem can for example be solved using the functions “unique” and “ismember”, which return the unique elements of a list and the location of elements from a list A in another list B. The function sub2ind helps you to convert the resulting subscripts to linear indices. Similar functions should be available in other languages, but this is certainly not the only way to solve the problem.
 
+###################### PREPARE FOR MODELING
+
 # require ruby csv library 
 require 'csv'
 
@@ -137,9 +139,16 @@ def solve_and_write_to_csv
   end
 end
 
-# only proceeds with the code if testdata file is not blank
+###################### RUN CODE
+
+# only proceeds with the code if testdata file is not blank; otherwise it clears out solution file 
 def runner
-  solve_and_write_to_csv unless File.zero?('testdata.csv')
+  if !File.zero?('testdata.csv')
+    solve_and_write_to_csv
+  else
+    File.exist?('solution_array.csv') ? FileUtils.rm('solution_array.csv') : File.new('solution_array.csv', 'w')
+    puts "Data file is empty."
+  end
 end
 
 runner
