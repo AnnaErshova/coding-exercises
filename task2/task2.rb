@@ -86,19 +86,24 @@ def make_testdata_reworked_csv_file
   end
 end
 
-# hydrates array with appropriately matched values; outputs array to Terminal
+# hydrates array with appropriately matched values
 def hydrate_array
   populate_matrix_with_column_headers
-  CSV.foreach('testdata_reworked.csv') do |row|
-    @outcome_array[row[1].to_i][row[0].to_i+1] = row[2].to_f
-  end
+  CSV.foreach('testdata_reworked.csv') { |row| @outcome_array[row[1].to_i][row[0].to_i+1] = row[2].to_f }
   @outcome_array
+end
+
+# replaces NilClass with "nan" string; outputs array to Terminal
+
+def replace_nil_with_nan
+  hydrate_array
+  @outcome_array.each { |row| row[row.index(nil)] = "nan" if row.include?(nil) }
   print "#{@outcome_array} \n"
 end
 
 # saves solution to a solution_array.csv file
 def solve_and_write_to_csv
-  hydrate_array
+  replace_nil_with_nan
   CSV.open('solution_array.csv', "wb", {converters: :numeric}) do |csv|
     @outcome_array.each do |array_row|
       csv << array_row

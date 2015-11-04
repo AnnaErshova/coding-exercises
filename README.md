@@ -47,7 +47,7 @@ Process:
 * Populate the rest of the array with appropriately matched content.
 
 Code re-factoring:
-* I tried to find a good balance between usilizing Ruby's explicit nature and keeping all methods as coherent units.
+* I aimed to find a good balance between usilizing Ruby's explicit nature and keeping all methods as coherent units.
 
 Directory contents:
 * I placed the original `testdata.csv` file in the same directory as the solution file. 
