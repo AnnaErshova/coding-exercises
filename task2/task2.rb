@@ -14,10 +14,23 @@ require 'csv'
 
 ###################### INITIALIZE AN EMPTY ARRAY OF CORRECT SIZE
 
-# create an empty nested array of 5 columns by 10 rows -- this comes from the premise of the exercise
-# this is the array we will be hydrating in this exercise
+# find number of rows necessary
+def find_number_of_rows
+  row_array = []
+  CSV.foreach('testdata.csv', {headers: true}) {|row| row_array << row[1]}
+  row_array.uniq.size
+end
+
+# find number of columns necessary
+def find_number_of_columns
+  column_array = []
+  CSV.foreach('testdata.csv', {headers: true}) {|row| column_array << row[0]}
+  column_array.uniq.size
+end
+
+# create an empty array with appropriate dimenstions that we will hydrate in this exercise
 def create_empty_array
-  @outcome_array = Array.new(10) { Array.new(5) }
+  @outcome_array = Array.new(find_number_of_rows+1) { Array.new(find_number_of_columns+1) }
 end
 
 ###################### POPULATE ARRAY WITH ROW HEADERS (DATES)
