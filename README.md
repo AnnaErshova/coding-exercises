@@ -3,7 +3,7 @@
 
 Solved to utilize Ruby's object oriented nature.
 
-Code can be run with `ruby task1.rb` from the `coding-exercises` directory in Terminal on Mac if ruby is installed || or via copy-pastying https://repl.it/languages/Ruby
+Code can be run with `ruby task1.rb` from the `coding-exercises` directory in Terminal on Mac if ruby is installed || or via copy-pastying at https://repl.it/languages/Ruby
 
 Class has to be initialized with the following:
 * Original foobar price (here: $1) as integer or decimal
@@ -27,13 +27,13 @@ You will get $13.31 in change.
 As part of my normal workflow, I would supplement this code with the following:
 
 * Tests, including for code accuracy, speed, and for validating inputs when initializing the object.
-⋅⋅* I'd like to see appropriate error messages if one input value is missing, is unrealistic (such as negative starting amount) or is incorrectly formatted.
-* Ability to choose two different pricing scenarios and see their corresponding outputs.
+  * I'd like to see appropriate error messages if one input value is missing, is unrealistic (such as negative starting amount) or is incorrectly formatted.
+  * Ability to choose two different pricing scenarios and see their corresponding outputs.
 
 ======
 ## Task 2
 
-Code can be run with `ruby task2.rb` from the `task2` directory in Terminal on Mac if ruby is installed || or via copy-pastying https://repl.it/languages/Ruby
+Code can be run with `ruby task2.rb` from the `task2` directory in Terminal on Mac if ruby is installed || or via copy-pastying at https://repl.it/languages/Ruby
 
 Coding commentary:
 * Solved procedurally to provide contrast to Task 1.
@@ -50,19 +50,19 @@ Code re-factoring:
 Directory contents:
 * I placed the original `testdata.csv` file in the same directory as the solution file. 
 * Two other files are created:
-*  An intermediary `testdata_reworked.csv` that serves as a data reference for the solution. It allows for potential extra testing to see that this step is accomplished correctly before the solution is processed.
-*  A final solution as a `solution_array.csv` file.
+  * An intermediary `testdata_reworked.csv` that serves as a data reference for the solution. It allows for potential extra testing to see that this step is accomplished correctly before the solution is processed.
+  * A final solution as a `solution_array.csv` file.
 
 As part of my normal workflow, I would supplement this code with the following:
 
 * Tests:
-⋅⋅* Checking size of the generated matrix.
-⋅⋅* Checking that input values don't appear to be out of place (e.g. alerting the user when neighboring elements have too much price discrepancy or that they are not zero when they are not meant to be).
-⋅⋅* Checking that input values are formatted correctly (and not, say, in Datatime because an Excel mistake has been made).
-⋅⋅* For all the checking procedures, I would add a separate validation layer in the code that would alert the user that checks have been completed and that x many potential errors have been found.
+  * Checking size of the generated matrix.
+  * Checking that input values don't appear to be out of place (e.g. alerting the user when neighboring elements have too much price discrepancy or that they are not zero when they are not meant to be).
+  * Checking that input values are formatted correctly (and not, say, in Datatime because an Excel mistake has been made).
+  * For all the checking procedures, I would add a separate validation layer in the code that would alert the user that checks have been completed and that x many potential errors have been found.
 
 * Directory and file management:
-⋅⋅* Making sure to clear `csv` files before running the code.
+  * Making sure to clear `csv` files before running the code.
 
 * Ability to choose two different pricing scenarios and see their corresponding outputs.
 
