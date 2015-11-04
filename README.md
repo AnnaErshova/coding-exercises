@@ -1,11 +1,16 @@
 ======
-* Task 1:
+## Task 1:
 
 Solved to utilize Ruby's object oriented nature.
 
 Code can be run with `ruby task1.rb` from the `coding-exercises` directory in Terminal on Mac if ruby is installed || or via copy-pastying https://repl.it/languages/Ruby
 
-Class can be initialized with any starting amount to be spent (here: $200), original foobar price (here: $1), and percentage price increase (here: 20%).
+Class has to be initialized with the following:
+* Original foobar price (here: $1) as integer or decimal
+* % px increase of foobars as a decimal (here: 20%, input as 0.2)
+* Starting amount to be spent (here: $200) as integer or decimal
+
+This code simulates conducting each transaction one at a time, and basing foobar n price on foobar n-1 at time of sale. There will be more money spent and less money received back in change in this scenario.
 
 The answer, considering parameters above, will be output as:
 
@@ -14,16 +19,19 @@ Each subsequently bought foobar was 20% more expensive than a previous one.
 You bought a total of 20 foobars at a total cost of $187.39.
 You will get $12.61 in change.
 
-You bought a total of 20 foobars at a total cost of $186.69.
+Alternative solution with rounding cost at the end of purchasing history:
+
+> You bought a total of 20 foobars at a total cost of $186.69.
 You will get $13.31 in change.
 
 As part of my normal workflow, I would supplement this code with the following:
 
 * Tests, including for code accuracy, speed, and for validating inputs when initializing the object.
+⋅⋅* I'd like to see appropriate error messages if one input value is missing, is unrealistic (such as negative starting amount) or is incorrectly formatted.
 * Ability to choose two different pricing scenarios and see their corresponding outputs.
 
 ======
-* Task 2
+## Task 2
 
 Code can be run with `ruby task2.rb` from the `task2` directory in Terminal on Mac if ruby is installed || or via copy-pastying https://repl.it/languages/Ruby
 
@@ -60,4 +68,4 @@ As part of my normal workflow, I would supplement this code with the following:
 
 As a side note, the task specified leaving the value for which no match is found as '0' or 'nan'. Since the output is converted into csv, I would suggest leaving it as a blank value if the intention is to chart it in Excel as that way that value is not plotted.
 ======
-* Task 3
+## Task 3
