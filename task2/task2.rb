@@ -39,13 +39,18 @@ end
 def populate_matrix_with_row_headers
   create_empty_array
   collect_row_headers
+  replace_row_helpers
+end
+
+# helper method for populate_matrix_with_row_headers
+def replace_row_helpers
   x = 0
   @outcome_array.each do |inner_array|
     inner_array[0] = @row_headers[x]
     x += 1
   end
 end
-# ==> [[0, nil, nil, nil, nil], [734638, nil, nil, nil, nil], [734639, nil, nil, nil, nil], [734640, nil, nil, nil, nil], [734641, nil, nil, nil, nil], [734642, nil, nil, nil, nil], [734643, nil, nil, nil, nil], [734644, nil, nil, nil, nil], [734645, nil, nil, nil, nil], [734646, nil, nil, nil, nil]]
+# current @output_array ==> [[0, nil, nil, nil, nil], [734638, nil, nil, nil, nil], [734639, nil, nil, nil, nil], [734640, nil, nil, nil, nil], [734641, nil, nil, nil, nil], [734642, nil, nil, nil, nil], [734643, nil, nil, nil, nil], [734644, nil, nil, nil, nil], [734645, nil, nil, nil, nil], [734646, nil, nil, nil, nil]]
 
 ###################### POPULATE ARRAY WITH COLUMN HEADERS (IDs)
 
@@ -69,7 +74,7 @@ def populate_matrix_with_column_headers
   @outcome_array[0] = @outcome_array[0].clear.push(" ").push(@column_headers).flatten! 
 end
 # at this point, our column and row headers have been populated and we need to hydrate the matrix with appropriate variables
-# ==> [[0, 102231711, 103244134, 103285344, 103293593], [734638, nil, nil, nil, nil], [734639, nil, nil, nil, nil], [734640, nil, nil, nil, nil], [734641, nil, nil, nil, nil], [734642, nil, nil, nil, nil], [734643, nil, nil, nil, nil], [734644, nil, nil, nil, nil], [734645, nil, nil, nil, nil], [734646, nil, nil, nil, nil]]
+# current @output_array ==> [[0, 102231711, 103244134, 103285344, 103293593], [734638, nil, nil, nil, nil], [734639, nil, nil, nil, nil], [734640, nil, nil, nil, nil], [734641, nil, nil, nil, nil], [734642, nil, nil, nil, nil], [734643, nil, nil, nil, nil], [734644, nil, nil, nil, nil], [734645, nil, nil, nil, nil], [734646, nil, nil, nil, nil]]
 
 ###################### HYDRATE ARRAY WITH APPROPRIATE DATA
 
@@ -94,7 +99,6 @@ def hydrate_array
 end
 
 # replaces NilClass with "nan" string; outputs array to Terminal
-
 def replace_nil_with_nan
   hydrate_array
   @outcome_array.each { |row| row[row.index(nil)] = "nan" if row.include?(nil) }
@@ -105,9 +109,7 @@ end
 def solve_and_write_to_csv
   replace_nil_with_nan
   CSV.open('solution_array.csv', "wb", {converters: :numeric}) do |csv|
-    @outcome_array.each do |array_row|
-      csv << array_row
-    end
+    @outcome_array.each { |array_row| csv << array_row }
   end
 end
 
