@@ -26,6 +26,8 @@ Alternative solution with rounding cost at the end of purchasing history:
 > You bought a total of 20 foobars at a total cost of $186.69.
 You will get $13.31 in change.
 
+This alternative solution would mean that line 41 should read `@initial_foobar_px = (@initial_foobar_px * (1+@percentage_px_increase))` instead of `@initial_foobar_px = (@initial_foobar_px * (1+@percentage_px_increase)).round(2)` as that is where rounding takes place.
+
 As part of my normal workflow, I would supplement this code with the following:
 
 * Tests, including for code accuracy, speed, and for validating inputs when initializing the object.
