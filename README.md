@@ -40,18 +40,18 @@ Coding commentary:
 * Commentary added to ease following the code.
 
 Process: 
-** Initialize an empty nested array of correct size. In this case it is 10 rows by 5 columns.
-** Populate row headers and column headers with correctly sorted unique values from the csv file. (Both row and column headers are sorted in ascending order.)
-** Populate the rest of the array with appropriately matched content.
+* Initialize an empty nested array of correct size. In this case it is 10 rows by 5 columns.
+* Populate row headers and column headers with correctly sorted unique values from the csv file. (Both row and column headers are sorted in ascending order.)
+* Populate the rest of the array with appropriately matched content.
 
 Code re-factoring:
 * I tried to find a good balance between usilizing Ruby's explicit nature and keeping all methods as coherent units.
 
 Directory contents:
-* I placed the original `testdata.csv`s file in the same directory as the solution file. 
+* I placed the original `testdata.csv` file in the same directory as the solution file. 
 * Two other files are created:
-⋅⋅* An intermediary `testdata_reworked.csv` that serves as a data reference for the solution. It allows for potential extra testing to see that this step is accomplished correctly before the solution is processed.
-⋅⋅* A final solution as a `solution_array.csv` file.
+*  An intermediary `testdata_reworked.csv` that serves as a data reference for the solution. It allows for potential extra testing to see that this step is accomplished correctly before the solution is processed.
+*  A final solution as a `solution_array.csv` file.
 
 As part of my normal workflow, I would supplement this code with the following:
 
@@ -67,5 +67,6 @@ As part of my normal workflow, I would supplement this code with the following:
 * Ability to choose two different pricing scenarios and see their corresponding outputs.
 
 As a side note, the task specified leaving the value for which no match is found as '0' or 'nan'. Since the output is converted into csv, I would suggest leaving it as a blank value if the intention is to chart it in Excel as that way that value is not plotted.
+
 ======
 ## Task 3
