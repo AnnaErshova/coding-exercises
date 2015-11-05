@@ -29,16 +29,16 @@ class FooBarShopping
   end
 
   def run_calculation_logic
-    @foobar_array << @initial_foobar_px
+    @foobar_array.push(@initial_foobar_px)
     until calculate_running_total_left<0 do
       calculate_price_of_next_foobar
       @foobar_array << @initial_foobar_px
     end
   end
 
-  # this assumes that each subsequent price is rounded off to 2 digits immediately to imitate real life
+  # helper methods for running calculation logic
   def calculate_price_of_next_foobar
-    @initial_foobar_px = (@initial_foobar_px * (1+@percentage_px_increase)).round(2)
+    @initial_foobar_px = (@initial_foobar_px * (1+@percentage_px_increase)).round(2) # assumes that each subsequent price is rounded off to 2 digits immediately to imitate real life
   end
 
   def calculate_running_total_left
@@ -47,6 +47,11 @@ class FooBarShopping
 
   def calculate_running_total_spent
     @foobar_array.reduce(0, :+)
+  end
+
+  # helper methods for printing outcome of calculation
+  def round_off_percentage_px_increase
+    (@percentage_px_increase*100).round
   end
 
   def count_foobars_bought
@@ -61,20 +66,10 @@ class FooBarShopping
     (@initial_amount_to_spend - calculate_money_spent).round(2)
   end
 
-  def round_off_percentage_px_increase
-    (@percentage_px_increase*100).round
-  end
-
 end
 
 # initialize without any variables; default variables are the onces specifies in the task
 FooBarShopping.new.shop
 
 # ALTERNATIVELY: initialize with non-default variables:
-#  * starting foobar price as integer
-#  * % px increase as a decimal 
-#  * total $ to be spent as integer
 # FooBarShopping.new(1,0.2,200).shop # insert any other variables here in correct format
-
-# run this code with 'ruby task1.rb' if ruby is installed || or via https://repl.it/languages/Ruby
-

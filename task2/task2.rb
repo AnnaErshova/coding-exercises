@@ -9,11 +9,10 @@
  
 # Hint: In Matlab, this problem can for example be solved using the functions “unique” and “ismember”, which return the unique elements of a list and the location of elements from a list A in another list B. The function sub2ind helps you to convert the resulting subscripts to linear indices. Similar functions should be available in other languages, but this is certainly not the only way to solve the problem.
 
-###################### PREPARE FOR MODELING
+###################### SET UP FOR RUNNING CODE
 
 # require ruby csv library 
 require 'csv'
-
 # requiry fileutils to access and modify files 
 require 'FileUtils'
 
@@ -49,13 +48,13 @@ end
 def collect_row_headers
   @row_headers = []
   CSV.foreach('testdata.csv') {|row| @row_headers << row[1].to_i}
-  @row_headers = @row_headers.uniq.sort[0..-1] # [0, 734638, 734639, 734640, 734641, 734642, 734643, 734644, 734645, 734646]
+  @row_headers = @row_headers.uniq.sort[0..-1] # ==> [0, 734638, 734639, 734640, 734641, 734642, 734643, 734644, 734645, 734646]
 end
 
 # creates hash of indexes and corresponding values that will serve as reference for coordinates lookup
 def create_row_headers_index_hash
   collect_row_headers
-  @row_hash = Hash[(0...@row_headers.size).zip(@row_headers)] # {0=>0, 1=>734638, 2=>734639, 3=>734640, 4=>734641, 5=>734642, 6=>734643, 7=>734644, 8=>734645, 9=>734646}
+  @row_hash = Hash[(0...@row_headers.size).zip(@row_headers)] # ==> {0=>0, 1=>734638, 2=>734639, 3=>734640, 4=>734641, 5=>734642, 6=>734643, 7=>734644, 8=>734645, 9=>734646}
 end
 
 # populate empty array's row headers with collected unique dates
@@ -81,13 +80,13 @@ end
 def collect_column_headers
   @column_headers = []
   CSV.foreach('testdata.csv') {|row| @column_headers << row[0].to_i}
-  @column_headers = @column_headers.uniq.sort[1..-1] # [102231711, 103244134, 103285344, 103293593]
+  @column_headers = @column_headers.uniq.sort[1..-1] #  ==> [102231711, 103244134, 103285344, 103293593]
 end
 
 # creates hash of indexes and corresponding values that will serve as reference for coordinates lookup
 def create_column_headers_index_hash
   collect_column_headers
-  @column_hash = Hash[(0...@column_headers.size).zip(@column_headers)] # {0=>102231711, 1=>103244134, 2=>103285344, 3=>103293593}
+  @column_hash = Hash[(0...@column_headers.size).zip(@column_headers)] # ==> {0=>102231711, 1=>103244134, 2=>103285344, 3=>103293593}
 end
 
 # populate column headers of an empty nested array; row headers have been populated already
@@ -120,14 +119,13 @@ end
 def hydrate_array
   populate_matrix_with_column_headers
   make_testdata_reworked_csv_file
-  CSV.foreach('testdata_reworked.csv') { |row| @outcome_array[row[1].to_i][row[0].to_i+1] = row[2].to_f } rescue "No csv file present."
-  @outcome_array
+  CSV.foreach('testdata_reworked.csv') { |row| @outcome_array[row[1].to_i][row[0].to_i+1] = row[2].to_f } 
 end
 
 # replaces NilClass with "nan" string; outputs array to Terminal
 def replace_nil_with_nan
   hydrate_array
-  @outcome_array.each { |row| row[row.index(nil)] = "nan" if row.include?(nil) } rescue "No array present."
+  @outcome_array.each { |row| row[row.index(nil)] = "nan" if row.include?(nil) } 
   print "#{@outcome_array} \n"
 end
 
